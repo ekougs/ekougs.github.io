@@ -20,27 +20,25 @@
     <meta property="og:site_name" content="The bytes bait">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Quarkus + Auth0 , the missing guide">
-    <meta property="og:description" content="I am currently playing with Quarkus and struggled on how to integrate Auth0 as an IAM.
-Here is a guide to integrate it quickly.">
+    <meta property="og:description" content="The situationI am currently playing with @QuarkusIO (for the native app promise) and @kotlin and was looking to integrate it with an IAM using JWT. And because I am generous and don’t want you to spend as much time on this, may the following be of some help. So">
     <meta property="og:url" content="//localhost:8008/quarkus-auth0-the-missing-guide/">
-    <meta property="article:published_time" content="2019-08-01T22:37:00.000Z">
-    <meta property="article:modified_time" content="2019-08-07T22:53:19.000Z">
-    <meta property="article:tag" content="IAM">
-    <meta property="article:tag" content="JWT">
-    <meta property="article:tag" content="Quarkus">
-    <meta property="article:tag" content="Auth0">
+    <meta property="article:published_time" content="2019-08-07T19:46:00.000Z">
+    <meta property="article:modified_time" content="2020-05-21T15:59:04.000Z">
+    <meta property="article:tag" content="iam">
+    <meta property="article:tag" content="jwt">
+    <meta property="article:tag" content="quarkus">
+    <meta property="article:tag" content="auth0">
     <meta property="article:tag" content="dev">
     
     <meta property="article:publisher" content="https://www.facebook.com/ghost">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Quarkus + Auth0 , the missing guide">
-    <meta name="twitter:description" content="I am currently playing with Quarkus and struggled on how to integrate Auth0 as an IAM.
-Here is a guide to integrate it quickly.">
+    <meta name="twitter:description" content="The situationI am currently playing with @QuarkusIO (for the native app promise) and @kotlin and was looking to integrate it with an IAM using JWT. And because I am generous and don’t want you to spend as much time on this, may the following be of some help. So">
     <meta name="twitter:url" content="//localhost:8008/quarkus-auth0-the-missing-guide/">
     <meta name="twitter:label1" content="Written by">
-    <meta name="twitter:data1" content="Sennen Pascal Ekouaghe">
+    <meta name="twitter:data1" content="ekougs">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="IAM, JWT, Quarkus, Auth0, dev">
+    <meta name="twitter:data2" content="iam, jwt, quarkus, auth0, dev">
     <meta name="twitter:site" content="@tryghost">
     <meta name="twitter:creator" content="@ekougs">
     
@@ -51,11 +49,11 @@ Here is a guide to integrate it quickly.">
     "publisher": {
         "@type": "Organization",
         "name": "The bytes bait",
-        "logo": "//localhost:8008/content/images/2019/08/logo_transparent.png"
+        "logo": "//localhost:8008/content/images/2020/05/logo_transparent.png"
     },
     "author": {
         "@type": "Person",
-        "name": "Sennen Pascal Ekouaghe",
+        "name": "ekougs",
         "image": {
             "@type": "ImageObject",
             "url": "//www.gravatar.com/avatar/9798dadf157a8742cf9f7add5b6cf239?s=250&d=mm&r=x",
@@ -69,10 +67,10 @@ Here is a guide to integrate it quickly.">
     },
     "headline": "Quarkus + Auth0 , the missing guide",
     "url": "//localhost:8008/quarkus-auth0-the-missing-guide/",
-    "datePublished": "2019-08-01T22:37:00.000Z",
-    "dateModified": "2019-08-07T22:53:19.000Z",
-    "keywords": "IAM, JWT, Quarkus, Auth0, dev",
-    "description": "I am currently playing with Quarkus and struggled on how to integrate Auth0 as an IAM.\nHere is a guide to integrate it quickly.",
+    "datePublished": "2019-08-07T19:46:00.000Z",
+    "dateModified": "2020-05-21T15:59:04.000Z",
+    "keywords": "iam, jwt, quarkus, auth0, dev",
+    "description": "The situationI am currently playing with @QuarkusIO (for the native app promise) and @kotlin and was looking to integrate it with an IAM using JWT. And because I am generous and don’t want you to spend as much time on this, may the following be of some help. So",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "//localhost:8008/"
@@ -80,7 +78,7 @@ Here is a guide to integrate it quickly.">
 }
     </script>
 
-    <meta name="generator" content="Ghost 2.26">
+    <meta name="generator" content="Ghost 2.31">
     <link rel="alternate" type="application/rss+xml" title="The bytes bait" href="../../rss/index.rss">
 
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -164,9 +162,9 @@ Here is a guide to integrate it quickly.">
         
     <a href="../../author/ekougs/index.html" class="avatar post-author">
       <span class="avatar-item avatar-img">
-        <amp-img src="//www.gravatar.com/avatar/9798dadf157a8742cf9f7add5b6cf239?s=250&amp;d=mm&amp;r=x" alt="Sennen Pascal Ekouaghe" width="34" height="34" layout="fixed"></amp-img>
+        <amp-img src="//www.gravatar.com/avatar/9798dadf157a8742cf9f7add5b6cf239?s=250&amp;d=mm&amp;r=x" alt="ekougs" width="34" height="34" layout="fixed"></amp-img>
       </span>
-      <span itemprop="author" class="avatar-item">Sennen Pascal Ekouaghe</span>
+      <span itemprop="author" class="avatar-item">ekougs</span>
     </a>
 
       </div>
@@ -218,21 +216,21 @@ class TestJWTService {
   --header 'content-type: application/json' \
   --data '{"client_id":"your_client_id","client_secret":"your_client_secret","audience":"the_audience","grant_type":"client_credentials"}'
 </code></pre><p>Test the token you just got</p><pre><code>curl --request GET --url //localhost:8080/bags --header 'authorization: Bearer the_token_you_just_got'
-</code></pre><p><a href="https://quarkus.io/guides/jwt-guide">Original documentation</a></p><p>Hope you enjoyed this article and guide.<br>You can follow me on twitter <a href="https://twitter.com/ekougs">@ekougs</a> for technical content and more :smile:.</p>
+</code></pre><p><a href="https://quarkus.io/guides/jwt-guide">Original documentation</a></p><p>Hope you enjoyed this article and guide.<br>You can follow me on twitter <a href="https://twitter.com/ekougs">@ekougs</a> for technical content and more 😁.</p>
 
         
     <div class="btn post-tags" data-js="tags">
-        <a href="../../tag/iam/index.html" title="IAM" class="btn-item">
-          <span itemprop="keywords">IAM</span>
+        <a href="../../tag/iam/index.html" title="iam" class="btn-item">
+          <span itemprop="keywords">iam</span>
         </a>
-        <a href="../../tag/jwt/index.html" title="JWT" class="btn-item">
-          <span itemprop="keywords">JWT</span>
+        <a href="../../tag/jwt/index.html" title="jwt" class="btn-item">
+          <span itemprop="keywords">jwt</span>
         </a>
-        <a href="../../tag/quarkus/index.html" title="Quarkus" class="btn-item">
-          <span itemprop="keywords">Quarkus</span>
+        <a href="../../tag/quarkus/index.html" title="quarkus" class="btn-item">
+          <span itemprop="keywords">quarkus</span>
         </a>
-        <a href="../../tag/auth0/index.html" title="Auth0" class="btn-item">
-          <span itemprop="keywords">Auth0</span>
+        <a href="../../tag/auth0/index.html" title="auth0" class="btn-item">
+          <span itemprop="keywords">auth0</span>
         </a>
         <a href="../../tag/dev/index.html" title="dev" class="btn-item">
           <span itemprop="keywords">dev</span>
@@ -249,7 +247,7 @@ class TestJWTService {
           
 
 <a itemprop="datePublished" href="../index.html" class="icon-ui icon-ui-date meta-item meta-date">
-  <span class="meta-count">6 days ago</span>
+  <span class="meta-count">Aug 07, 2019</span>
 </a>
 
 
