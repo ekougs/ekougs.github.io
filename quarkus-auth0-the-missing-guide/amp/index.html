@@ -23,7 +23,7 @@
     <meta property="og:description" content="The situationI am currently playing with @QuarkusIO (for the native app promise) and @kotlin and was looking to integrate it with an IAM using JWT. And because I am generous and don’t want you to spend as much time on this, may the following be of some help. So">
     <meta property="og:url" content="//localhost:8008/quarkus-auth0-the-missing-guide/">
     <meta property="article:published_time" content="2019-08-07T19:46:00.000Z">
-    <meta property="article:modified_time" content="2020-05-21T15:59:04.000Z">
+    <meta property="article:modified_time" content="2020-05-30T21:04:59.000Z">
     <meta property="article:tag" content="iam">
     <meta property="article:tag" content="jwt">
     <meta property="article:tag" content="quarkus">
@@ -67,7 +67,7 @@
     "headline": "Quarkus + Auth0 , the missing guide",
     "url": "//localhost:8008/quarkus-auth0-the-missing-guide/",
     "datePublished": "2019-08-07T19:46:00.000Z",
-    "dateModified": "2020-05-21T15:59:04.000Z",
+    "dateModified": "2020-05-30T21:04:59.000Z",
     "keywords": "iam, jwt, quarkus, auth0, dev",
     "description": "The situationI am currently playing with @QuarkusIO (for the native app promise) and @kotlin and was looking to integrate it with an IAM using JWT. And because I am generous and don’t want you to spend as much time on this, may the following be of some help. So",
     "mainEntityOfPage": {
@@ -215,7 +215,7 @@ class TestJWTService {
   --header 'content-type: application/json' \
   --data '{"client_id":"your_client_id","client_secret":"your_client_secret","audience":"the_audience","grant_type":"client_credentials"}'
 </code></pre><p>Test the token you just got</p><pre><code>curl --request GET --url //localhost:8080/bags --header 'authorization: Bearer the_token_you_just_got'
-</code></pre><p><a href="https://quarkus.io/guides/jwt-guide">Original documentation</a></p><p>Hope you enjoyed this article and guide.<br>You can follow me on twitter <a href="https://twitter.com/ekougs">@ekougs</a> for technical content and more 😁.</p>
+</code></pre><p><a href="https://quarkus.io/guides/jwt-guide">Original documentation</a></p>
 
         
     <div class="btn post-tags" data-js="tags">

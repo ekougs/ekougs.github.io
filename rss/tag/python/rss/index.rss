@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="//purl.org/dc/elements/1.1/" xmlns:content="//purl.org/rss/1.0/modules/content/" xmlns:atom="//www.w3.org/2005/Atom" version="2.0" xmlns:media="//search.yahoo.com/mrss/"><channel><title><![CDATA[python - The bytes bait]]></title><description><![CDATA[My stories about development and deployment. Written and shared with humor and passion.]]></description><link>//localhost:8008/</link><image><url>//localhost:8008/favicon.png</url><title>python - The bytes bait</title><link>//localhost:8008/</link></image><generator>Ghost 2.31</generator><lastBuildDate>Sat, 30 May 2020 21:13:56 GMT</lastBuildDate><atom:link href="//localhost:8008/tag/python/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Test your Django SysLog configuration with Docker]]></title><description><![CDATA[<p>Not long ago, I was finalizing the deployment of the MVP of an internal tool.<br>Our standard containerized environment use Syslog to dispatch logs.<br>The aforementioned tool is written in Django that fortunately has rfc5424-logging-handler library for handling log communication to SysLog.<br>But still I needed to test that my</p>]]></description><link>//localhost:8008/test-your-syslog-configuration-with-docker/</link><guid isPermaLink="false">5ed2b465b4e421006eabab68</guid><category><![CDATA[docker]]></category><category><![CDATA[syslog]]></category><category><![CDATA[linux]]></category><category><![CDATA[python]]></category><category><![CDATA[django]]></category><dc:creator><![CDATA[ekougs]]></dc:creator><pubDate>Sat, 30 May 2020 21:04:07 GMT</pubDate><content:encoded><![CDATA[<p>Not long ago, I was finalizing the deployment of the MVP of an internal tool.<br>Our standard containerized environment use Syslog to dispatch logs.<br>The aforementioned tool is written in Django that fortunately has rfc5424-logging-handler library for handling log communication to SysLog.<br>But still I needed to test that my configuration works before any actual deployment.<br>That is where Docker came to the rescue</p><h2 id="django-configuration">Django configuration</h2><p>Below the Django configuration I used</p><!--kg-card-begin: code--><pre><code class="language-python">LOGGING["handlers"]["syslog"] = {
+    "level": LOG_LEVEL,
+    "formatter": "mesos",
+    "class": "rfc5424logging.handler.Rfc5424SysLogHandler",
+    "appname": app_name,
+    "facility": LOG_LOCAL5,
+}
+LOGGING["root"]["handlers"].append("syslog")</code></pre><!--kg-card-end: code--><p>It is rather trivial I declare the Syslog handler I want to use and the facility that will be used. Not that it uses the UDP protocol by default.</p><h2 id="the-docker-image">The docker image</h2><p>I did not want to install Syslog or change the configuration locally.<br>I try to isolate as much as I can the changes because it is easier to switch environments between projects and spot problems when you introduce changes.<br></p><p>This is why I created the following Docker image to test my setup</p><!--kg-card-begin: code--><pre><code class="language-Dockerfile">FROM python:3.6-buster
+
+RUN apt-get update \
+    &amp;&amp; apt-get install -y --no-install-recommends \
+        rsyslog vim less \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+RUN echo '\nlocal5.*              /var/log/internal_tool.log' &gt;&gt; /etc/rsyslog.conf
+
+WORKDIR /usr/src/app
+COPY requirements ./requirements
+RUN pip install -r requirements/base.txt -r requirements/local.txt
+COPY . .
+
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]</code></pre><!--kg-card-end: code--><p>It installs syslog, redirects local5 facility to a local file, install our app and runs it.</p><p>So then we can build, <code>docker image build...</code>, and run the container, <code>docker container exec...</code>.<br>As rsyslog is not listening UDP:514 by default, like the default log handler configuration above expects, we uncomment the following lines in <code>/etc/rsyslog.conf</code>.</p><!--kg-card-begin: code--><pre><code>#module(load="imudp")
+#input(type="imudp" port="514")</code></pre><!--kg-card-end: code--><p>Note that we could also have prepared a configuration file and load it directly in the image.<br>Then restart the rsylog daemon <code>/usr/sbin/rsyslogd -n -iNONE&amp;</code></p><h2 id="finally">Finally</h2><p>You can test that your configuration is OK with <code>logger -p local5.error "Troubleshooting test"</code>.<br>We expect it to create or update <code>/var/log/internal_tool.log</code> file with the phrase "Troubleshooting test" in it.</p>]]></content:encoded></item></channel></rss>
